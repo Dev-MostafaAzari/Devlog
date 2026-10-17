@@ -5,7 +5,7 @@ import Link from "next/link";
 const ButtomNavigation = () => {
     
     return (
-        <div className="w-screen absolute bottom-[0px] p-[10px] md:hidden">
+        <div className="w-screen h-[75px] absolute bottom-[0px] p-[10px] md:hidden z-999 bg-white">
             <div className="w-full flex justify-evenly items-center gap-[3px]">
                 <div className="p-[5px] flex justify-center">
                     <Link href={"/"} className="flex flex-col items-center gap-[3px] text-[12px] text-[#285A48]"><HomeIcon size={25} color="#285A48" strokeWidth={2}/><span>Home</span></Link>
