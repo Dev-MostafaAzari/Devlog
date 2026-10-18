@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
 import ButtomNavigation from "./components/BottomNavigation";
+import ReduxProvider from "./redux/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +26,11 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="overflow-hidden">
-        <Navbar/>
-        {children}
-        <ButtomNavigation/>
+        <ReduxProvider>
+          <Navbar/>
+          {children}
+          <ButtomNavigation/>
+        </ReduxProvider>
       </body>
     </html>
   );
