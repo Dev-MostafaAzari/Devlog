@@ -3,6 +3,11 @@ import Image from "next/image";
 import {z} from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useSelector , useDispatch } from "react-redux";
+import { RegisterUser } from "../redux/features/RegisterSlice";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 
 const schema = z.object({
@@ -16,10 +21,21 @@ const schema = z.object({
 });
 
 const Register = () => {
-    const {register , handleSubmit , formState:{errors}} = useForm({resolver:zodResolver(schema)});
-
+    const {isLoading,isRegistered,error,errorMessage} = useSelector(state => state.registerSlice);
+    const {register , handleSubmit ,watch, formState:{errors}} = useForm({resolver:zodResolver(schema)});
+    const userData = {name:watch("name"),mobile:watch("mobile"),password:watch("password")};
+    const dispatch = useDispatch();
+    const router = useRouter();
+    useEffect(()=>{
+        if(isRegistered)
+        {
+            setTimeout(()=>{
+                router.push("/")
+            },3000)
+        }
+    },[isRegistered])
     const onSubmit =(e)=>{
-        console.log("Created");
+        dispatch(RegisterUser(userData));
     }
 
     return (
