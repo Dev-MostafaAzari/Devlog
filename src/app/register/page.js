@@ -3,12 +3,12 @@ import Image from "next/image";
 import {z} from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import { useSelector , useDispatch } from "react-redux";
 import { RegisterUser } from "../redux/features/RegisterSlice";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import SignInLoading from "../components/Loading/SignInLoading";
+import Alert from "../components/Alert";
 
 
 const schema = z.object({
@@ -40,7 +40,8 @@ const Register = () => {
     }
 
     return (
-        <div className="w-screen h-[calc(100vh-175px)] md:h-[calc(100vh-100px)] overflow-y-scroll">
+        <div className="w-screen h-[calc(100vh-175px)] md:h-[calc(100vh-100px)] overflow-y-scroll md:scrollbar-none">
+            {error ? <Alert ErrorMessage={errorMessage}/> : null}
             <div className="w-full h-full p-[30px]">
                 <div className="w-full h-full flex justify-center items-center flex-col lg:flex-row">
                     <div className="w-full h-full hidden flex-2 xl:flex-1 rounded-md overflow-hidden md:flex">
@@ -52,7 +53,6 @@ const Register = () => {
                             <h2 className="text-[22px] text-gray-600">Create your account</h2>
                         </div>
                         <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full flex-3 flex flex-col gap-[5px]">
-                            
                             <div className="flex gap-[10px] flex-col justify-center p-[10px]">
                                 <span className="text-[20px]">
                                     Full Name
