@@ -41,9 +41,9 @@ const Register = () => {
     return (
         <div className="w-screen h-[calc(100vh-175px)] md:h-[calc(100vh-100px)] overflow-y-scroll">
             <div className="w-full h-full p-[30px]">
-                <div className="w-full h-full flex justify-center items-center">
-                    <div className="w-full h-full hidden flex-1 rounded-md overflow-hidden md:flex">
-                        <Image src={"/images/abs.jpg"}  quality={100} width={100} height={100} sizes="100vw" alt="pic" className="w-full h-full object-cover"/>
+                <div className="w-full h-full flex justify-center items-center flex-col lg:flex-row">
+                    <div className="w-full h-full hidden flex-2 xl:flex-1 rounded-md overflow-hidden md:flex">
+                        <Image src={"/images/register.jpg"}  quality={100} width={100} height={100} sizes="100vw" alt="pic" className="w-full h-full object-contain"/>
                     </div>
                     <div className="w-full h-full flex md:flex-2 flex-col gap-[10px] justify-center p-[10px]">
                         <div className="w-full h-full flex-1 flex flex-col items-center justify-end">
