@@ -25,10 +25,12 @@ const RegisterSlice = createSlice({
         builder.addCase(RegisterUser.fulfilled , (state)=>{
             state.isRegistered = true;
             state.error = false;
+            state.isLoading = false;
         }),
         builder.addCase(RegisterUser.rejected, (state,action)=>{
             state.error = true;
             state.errorMessage = action.error.message;
+            state.isLoading = false;
         })
     }
 })
