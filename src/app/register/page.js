@@ -8,6 +8,7 @@ import { useSelector , useDispatch } from "react-redux";
 import { RegisterUser } from "../redux/features/RegisterSlice";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import SignInLoading from "../components/Loading/SignInLoading";
 
 
 const schema = z.object({
@@ -27,12 +28,12 @@ const Register = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     useEffect(()=>{
-        if(isRegistered)
+        /* if(isRegistered)
         {
             setTimeout(()=>{
                 router.push("/")
             },3000)
-        }
+        } */
     },[isRegistered])
     const onSubmit =(e)=>{
         dispatch(RegisterUser(userData));
@@ -51,6 +52,7 @@ const Register = () => {
                             <h2 className="text-[22px] text-gray-600">Create your account</h2>
                         </div>
                         <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full flex-3 flex flex-col gap-[5px]">
+                            
                             <div className="flex gap-[10px] flex-col justify-center p-[10px]">
                                 <span className="text-[20px]">
                                     Full Name
@@ -80,7 +82,7 @@ const Register = () => {
                                 <span>{errors.confirmPassword?.message}</span>
                             </div>
                             <div className="flex justify-center items-center p-[10px]">
-                                <button type="submit" className="p-[10px] bg-blue-700 text-white rounded-md cursor-pointer hover:bg-blue-900">Create Account</button>
+                                <button disabled={isLoading ? true : false}  type="submit" className={`w-[130px] h-[45px] p-[10px] bg-blue-700 text-white rounded-md cursor-pointer ${isLoading ? "" : "hover:bg-blue-900"}`}>{isLoading ? <SignInLoading/> : "Create Account"}</button>
                             </div>
                         </form>
                     </div>
