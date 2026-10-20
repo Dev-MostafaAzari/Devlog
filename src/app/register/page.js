@@ -40,7 +40,7 @@ const Register = () => {
     }
 
     return (
-        <div className="w-screen h-[calc(100vh-175px)] md:h-[calc(100vh-100px)] overflow-y-scroll md:scrollbar-none">
+        <div className="w-screen h-[calc(100vh-175px)] md:h-[calc(100vh-100px)] overflow-y-scroll md:scrollbar-none relative">
             {error ? <Alert ErrorMessage={errorMessage}/> : null}
             <div className="w-full h-full p-[30px]">
                 <div className="w-full h-full flex justify-center items-center flex-col lg:flex-row">
