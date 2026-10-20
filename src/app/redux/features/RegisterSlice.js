@@ -8,9 +8,18 @@ const initialState = {
     errorMessage : null
 };
 
-const RegisterUser = createAsyncThunk("register/RegisterUser",async ({name , mobile , password})=>{
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}users/signIn`,{name:name,mobile:mobile,password:password});
-    return response.data.token;
+const RegisterUser = createAsyncThunk("register/RegisterUser",async ({name , mobile , password},{rejectWithValue})=>{
+    try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}users/signIn`,{name:name,mobile:mobile,password:password});
+        return response;
+    } catch (error) {
+        const errorMessage = error.response.data;
+        if(error.status===409)
+        {
+            return rejectWithValue(errorMessage);
+        }
+        return rejectWithValue(error.code);
+    }
 });
 
 const RegisterSlice = createSlice({
@@ -29,7 +38,7 @@ const RegisterSlice = createSlice({
         }),
         builder.addCase(RegisterUser.rejected, (state,action)=>{
             state.error = true;
-            state.errorMessage = action.error.message;
+            state.errorMessage = action.payload;
             state.isLoading = false;
         })
     }
