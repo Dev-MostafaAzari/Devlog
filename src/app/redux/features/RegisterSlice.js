@@ -10,8 +10,8 @@ const initialState = {
 
 const RegisterUser = createAsyncThunk("register/RegisterUser",async ({name , mobile , password},{rejectWithValue})=>{
     try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}users/signIn`,{name:name,mobile:mobile,password:password});
-        return response;
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}users/signIn`,{name:name,mobile:mobile,password:password},{withCredentials:true});
+        return response.data;
     } catch (error) {
         const errorMessage = error.response.data;
         if(error.status===409)
