@@ -1,14 +1,24 @@
+"use client";
+import { loginUser } from "@/app/redux/features/LoginSlice";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useDispatch , useSelector } from "react-redux";
 
 
 const NavbarProfile = () => {
-    const isLogin = true;
+    const {isRegistered} = useSelector(state => state.registerSlice);
+    const {data , loading ,isLogedIn} = useSelector(state => state.loginSlice);
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(loginUser())
+    },[isRegistered])
+
     return (
         <div className="flex-1 flex justify-left items-center">
-            {isLogin ? 
+            {isLogedIn ? 
                 <Link href={"/"}>
-                    <Image src={"/images/mypic.jpg"} width={40} height={40} alt="profilePic" className="rounded-[50%]"/>
+                    <Image src={`${process.env.NEXT_PUBLIC_API_URL}${data?.image}`} width={40} height={40} alt="profilePic" className="rounded-[50%]"/>
                 </Link>
                 :
                 <Link href={"/"} className="p-[10px] bg-blue-600 text-white rounded-md">Login</Link>
