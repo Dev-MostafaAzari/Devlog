@@ -3,21 +3,36 @@ import axios from "axios";
 
 const initialState = {
     isLogedIn : false,
+    isLogedIn2 : false,
     data : null,
     loading : false,
+    loading2 : false,
     error : false,
+    error2 : false,
     errorMessage : null,
+    errorMessage2 : null,
 };
 
 const loginUser = createAsyncThunk("login/loginUser", async (_,{rejectWithValue})=>{
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}users/me`,{withCredentials:true});
-        console.log("res", response.data);
+        
         return response.data;
         
     } catch (error) {
         const errorMessage = error.message;
         console.log("err", errorMessage);
+        return rejectWithValue(errorMessage);
+    }
+});
+
+const LoginUserWithPass = createAsyncThunk("login/LoginUserWithPass",async ({mobile,password},{rejectWithValue})=>{
+    try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}users/login`,{mobile : mobile , password : password},{withCredentials:true});
+        console.log("res", response.data);
+        return response.data;
+    } catch (error) {
+        const errorMessage = error.message;
         return rejectWithValue(errorMessage);
     }
 });
@@ -40,6 +55,22 @@ const LoginSlice = createSlice({
             state.error = true;
             state.errorMessage = action.payload;
             state.isLogedIn = false;
+            state.loading = false;
+        }),
+        builder.addCase(LoginUserWithPass.pending , (state)=>{
+            state.loading2 = true;
+            state.isLogedIn2 = false;
+        }),
+        builder.addCase(LoginUserWithPass.fulfilled , (state,action)=>{
+            state.loading2 = false;
+            state.isLogedIn2 = true;
+            state.data = action.payload;
+        }),
+        builder.addCase(LoginUserWithPass.rejected , (state,action)=>{
+            state.loading2 = false;
+            state.error2 = true;
+            state.errorMessage2 = action.payload;
+            state.isLogedIn2 = false;
         })
     }
 });
@@ -47,4 +78,4 @@ const LoginSlice = createSlice({
 
 
 export default LoginSlice.reducer;
-export {loginUser};
+export {loginUser,LoginUserWithPass};
