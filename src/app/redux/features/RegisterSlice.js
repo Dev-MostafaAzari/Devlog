@@ -30,6 +30,7 @@ const RegisterSlice = createSlice({
         builder.addCase(RegisterUser.pending , (state)=>{
             state.isLoading = true;
             state.error = false;
+            state.errorMessage = null;
         }),
         builder.addCase(RegisterUser.fulfilled , (state)=>{
             state.isRegistered = true;

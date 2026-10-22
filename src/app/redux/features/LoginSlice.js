@@ -32,7 +32,7 @@ const LoginUserWithPass = createAsyncThunk("login/LoginUserWithPass",async ({mob
         console.log("res", response.data);
         return response.data;
     } catch (error) {
-        const errorMessage = error.message;
+        const errorMessage = error.response.data;
         return rejectWithValue(errorMessage);
     }
 });
@@ -60,6 +60,8 @@ const LoginSlice = createSlice({
         builder.addCase(LoginUserWithPass.pending , (state)=>{
             state.loading2 = true;
             state.isLogedIn2 = false;
+            state.error2 = false;
+            state.errorMessage2 = null;
         }),
         builder.addCase(LoginUserWithPass.fulfilled , (state,action)=>{
             state.loading2 = false;
