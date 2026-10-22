@@ -30,7 +30,11 @@ const ButtomNavigation = () => {
                             :
                             <UserRound size={25} color="#285A48" strokeWidth={2}/>   
                         }
-                        <span>Profile</span>
+                        {isLogedIn ? 
+                            <span>You</span>
+                            :
+                            <span>Profile</span>
+                        }
                     </Link>
                 </div>
             </div>
