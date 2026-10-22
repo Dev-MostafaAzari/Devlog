@@ -44,7 +44,6 @@ const LoginSlice = createSlice({
     extraReducers:(builder)=>{
         builder.addCase(loginUser.pending , (state)=>{
             state.loading = true;
-            state.isLogedIn = false;
         }),
         builder.addCase(loginUser.fulfilled , (state,action)=>{
             state.loading = false;
@@ -59,7 +58,6 @@ const LoginSlice = createSlice({
         }),
         builder.addCase(LoginUserWithPass.pending , (state)=>{
             state.loading2 = true;
-            state.isLogedIn2 = false;
             state.error2 = false;
             state.errorMessage2 = null;
         }),
