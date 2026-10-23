@@ -1,18 +1,26 @@
 "use client";
 import AlertLogin from "../components/Alerts/AlertLogin";
 import SignInLoading from "../components/Loading/SignInLoading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch , useSelector } from "react-redux";
 import Image from "next/image";
 import { LoginUserWithPass } from "../redux/features/LoginSlice";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 
 const UserLogin = () => {
+    const router = useRouter();
     const dispatch = useDispatch();
     const [mobile , setMobile] = useState("");
     const [password , setPassword] = useState("");
-    const {loading2 , error2 , errorMessage2} = useSelector(state => state.loginSlice);
+    const {loading2, error2, errorMessage2, isLogedIn2} = useSelector(state => state.loginSlice);
+    useEffect(()=>{
+        if(isLogedIn2)
+        {
+            router.push("/");
+        }
+    },[isLogedIn2]);
     const submit = (e)=>{
         e.preventDefault();
         dispatch(LoginUserWithPass({mobile : mobile , password : password}));
