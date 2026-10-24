@@ -5,6 +5,7 @@ import { loginUser } from "../redux/features/LoginSlice";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Pencil } from "lucide-react";
+import ProfileLoading from "../components/Loading/ProfileLoading";
 
 
 const Profile = () => {
@@ -50,7 +51,7 @@ const Profile = () => {
                             </div>
                         </>
                         :
-                        "loading"
+                        <ProfileLoading/>
                     }
                     <div className="hidden">
                         sidebar on lg screens
