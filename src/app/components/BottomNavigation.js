@@ -10,7 +10,6 @@ const ButtomNavigation = () => {
     useEffect(()=>{
         
     },[isLogedIn])
-    console.log(isLogedIn)
     return (
         <div className="w-screen h-[75px] absolute bottom-[0px] p-[10px] md:hidden z-999 bg-white">
             <div className="w-full flex justify-evenly items-center gap-[3px]">
