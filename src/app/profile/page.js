@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Pencil } from "lucide-react";
 import ProfileLoading from "../components/Loading/ProfileLoading";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 
 const Profile = () => {
@@ -22,9 +23,8 @@ const Profile = () => {
 
     return (
         <div className="w-screen h-[calc(100vh-175px)] md:h-[calc(100vh-100px)] overflow-y-scroll md:scrollbar-none relative xl:flex xl:justify-center">
-           <div className="w-full h-full">
-                <div className="w-full h-full flex flex-col p-[10px] ">
-                    
+           <div className="w-full h-full md:flex md:flex-row-reverse">
+                <div className="w-full h-full flex flex-col p-[10px] md:flex-2">
                     {data ? 
                         <>
                             <div className="flex-1 flex  flex justify-center items-center">
@@ -53,9 +53,9 @@ const Profile = () => {
                         :
                         <ProfileLoading/>
                     }
-                    <div className="hidden">
-                        sidebar on lg screens
-                    </div>
+                </div>
+                <div className="hidden md:flex flex-1">
+                    <Sidebar/>
                 </div>
            </div>
         </div>
