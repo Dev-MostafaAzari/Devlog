@@ -13,21 +13,21 @@ const Sidebar = () => {
                     </Link>
                 </div>
                 <div className="w-full flex justify-start items-cente gap-[10px] p-[10px]">
-                    <Link className="font-medium w-full h-full flex gap-[10px] items-center bg-gray-200 p-[10px] rounded-md" href={"/"}>
+                    <Link className="font-medium w-full h-full flex gap-[10px] items-center bg-gray-200 p-[10px] rounded-md" href={"/user/myarticles"}>
                         <LibraryBig strokeWidth={2} width={30} height={30} className="text-gray-500"/>
                         <span>My Articles</span>
                     </Link>
                 </div>
                 <div className="w-full flex justify-start items-center gap-[10px] p-[10px]">
-                    <Link className="font-medium w-full h-full flex gap-[10px] items-center bg-gray-200 p-[10px] rounded-md" href={"/"}>
+                    <Link className="font-medium w-full h-full flex gap-[10px] items-center bg-gray-200 p-[10px] rounded-md" href={"/user/addarticle"}>
                         <SquarePlus strokeWidth={2} width={30} height={30} className="text-gray-500"/>
                         <span>Add Article</span>
                     </Link>
                 </div>
                 <div className="w-full flex justify-start items-center gap-[10px] p-[10px]">
-                    <Link className="font-medium w-full h-full flex gap-[10px] items-center bg-gray-200 p-[10px] rounded-md" href={"/"}>
+                    <Link className="font-medium w-full h-full flex gap-[10px] items-center bg-gray-200 p-[10px] rounded-md" href={"/user/profile"}>
                         <User strokeWidth={2} width={30} height={30} className="text-gray-500"/>
-                        <span>My Articles</span>
+                        <span>Profile</span>
                     </Link>
                 </div>
                 
