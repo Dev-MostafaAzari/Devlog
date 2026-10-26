@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const Sidebar = () => {
-    const sidebarLinks = [{title:"Dashboard",link:"/user/dashboard",icon:"LayoutDashboard"},{title:"My Articles",link:"/user/myarticles",icon:"LibraryBig"}
+    const sidebarLinks = [{title:"Dashboard",link:"/user",icon:"LayoutDashboard"},{title:"My Articles",link:"/user/myarticles",icon:"LibraryBig"}
         ,{title:"Add Article",link:"/user/addarticle",icon:"SquarePlus"},{title:"Profile",link:"/user/profile",icon:"User"}
     ]; // sidebar Links
     const [activeTab,SetActiveTab]=useState("Profile");
