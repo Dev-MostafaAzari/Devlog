@@ -36,7 +36,7 @@ const UserLogin = () => {
                     <div className="w-full h-full flex md:flex-2 flex-col gap-[10px] justify-center p-[10px]">
                         <div className="w-full h-full flex-1 flex flex-col items-center justify-end">
                             <h1 className="text-[30px] text-gray-600">Login</h1>
-                            <h2 className="text-[22px] text-gray-600">Sign in to your account to continue</h2>
+                            <h2 className="text-[22px] text-gray-600 text-center">Sign in to your account to continue</h2>
                         </div>
                         <form onSubmit={(e)=>{submit(e)}} className="w-full h-full flex-3 md:flex-2 flex flex-col gap-[5px]">
                             <div className="flex gap-[10px] flex-col justify-center p-[10px]">
