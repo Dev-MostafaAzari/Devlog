@@ -67,19 +67,19 @@ const MobileSidebar = () => {
                         <motion.div variants={sidebarContent}  animate={sidebar? "open": "close"} className="flex flex-col gap-[10px] text-[20px] justify-center p-[10px]">
                             <motion.div variants={sidebarContent} className="w-full flex justify-start items-center gap-[10px]">
                                 <LayoutDashboard strokeWidth={2} width={30} height={30} className="text-gray-500"/>
-                                <Link onClick={()=>{dispatch(CloseSidebar())}} className="font-medium" href={"/"}>Dashboard</Link>
+                                <Link onClick={()=>{dispatch(CloseSidebar())}} className="font-medium" href={"/user"}>Dashboard</Link>
                             </motion.div>
                             <motion.div variants={sidebarContent} className="w-full flex justify-start items-cente gap-[10px]">
                                 <LibraryBig strokeWidth={2} width={30} height={30} className="text-gray-500"/>
-                                <Link onClick={()=>{dispatch(CloseSidebar())}} className="font-medium" href={"/"}>My Articles</Link>
+                                <Link onClick={()=>{dispatch(CloseSidebar())}} className="font-medium" href={"/user/myarticles"}>My Articles</Link>
                             </motion.div>
                             <motion.div variants={sidebarContent} className="w-full flex justify-start items-center gap-[10px]">
                                 <SquarePlus strokeWidth={2} width={30} height={30} className="text-gray-500"/>
-                                <Link onClick={()=>{dispatch(CloseSidebar())}} className="font-medium" href={"/"}>Add Article</Link>
+                                <Link onClick={()=>{dispatch(CloseSidebar())}} className="font-medium" href={"/user/addarticle"}>Add Article</Link>
                             </motion.div>
                             <motion.div variants={sidebarContent} className="w-full flex justify-start items-center gap-[10px]">
                                 <User strokeWidth={2} width={30} height={30} className="text-gray-500"/>
-                                <Link onClick={()=>{dispatch(CloseSidebar())}} className="font-medium" href={"/profile"}>Profile</Link>
+                                <Link onClick={()=>{dispatch(CloseSidebar())}} className="font-medium" href={"/user/profile"}>Profile</Link>
                             </motion.div>
                             <motion.div variants={sidebarContent} className="w-full flex justify-start items-center pt-[10px] text-red-500">
                                 <div className="w-full flex justify-start items-center gap-[10px]">
