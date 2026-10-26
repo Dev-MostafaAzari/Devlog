@@ -1,36 +1,28 @@
 "use client";
-import { LayoutDashboard, LibraryBig, LogOut, SquarePlus, User } from "lucide-react";
+import { icons, LogOut } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 const Sidebar = () => {
+    const sidebarLinks = [{title:"Dashboard",link:"/user/dashboard",icon:"LayoutDashboard"},{title:"My Articles",link:"/user/myarticles",icon:"LibraryBig"}
+        ,{title:"Add Article",link:"/user/addarticle",icon:"SquarePlus"},{title:"Profile",link:"/user/profile",icon:"User"}
+    ]; // sidebar Links
+    const [activeTab,SetActiveTab]=useState("Profile");
+
     return (
         <div className="w-full h-full flex flex-col p-[10px] shadow-gray-400 shadow-md rounded-[15px]">
             <div className="w-full h-full flex flex-col flex-3 gap-[10px]">
-                <div className="w-full flex justify-start items-center gap-[10px] p-[10px]">
-                    <Link className="font-medium w-full h-full flex gap-[10px] items-center bg-gray-200 p-[10px] rounded-md" href={"/user/dashboard"}>
-                        <LayoutDashboard strokeWidth={2} width={30} height={30} className="text-gray-500"/>
-                        <span>Dashboard</span>
-                    </Link>
-                </div>
-                <div className="w-full flex justify-start items-cente gap-[10px] p-[10px]">
-                    <Link className="font-medium w-full h-full flex gap-[10px] items-center bg-gray-200 p-[10px] rounded-md" href={"/user/myarticles"}>
-                        <LibraryBig strokeWidth={2} width={30} height={30} className="text-gray-500"/>
-                        <span>My Articles</span>
-                    </Link>
-                </div>
-                <div className="w-full flex justify-start items-center gap-[10px] p-[10px]">
-                    <Link className="font-medium w-full h-full flex gap-[10px] items-center bg-gray-200 p-[10px] rounded-md" href={"/user/addarticle"}>
-                        <SquarePlus strokeWidth={2} width={30} height={30} className="text-gray-500"/>
-                        <span>Add Article</span>
-                    </Link>
-                </div>
-                <div className="w-full flex justify-start items-center gap-[10px] p-[10px]">
-                    <Link className="font-medium w-full h-full flex gap-[10px] items-center bg-gray-200 p-[10px] rounded-md" href={"/user/profile"}>
-                        <User strokeWidth={2} width={30} height={30} className="text-gray-500"/>
-                        <span>Profile</span>
-                    </Link>
-                </div>
-                
+                {sidebarLinks.map((item) => {
+                    const Icon = icons[item.icon];
+                    return(
+                        <div key={item.title} className="w-full flex justify-start items-center gap-[10px] p-[10px]">
+                            <Link onClick={()=>{SetActiveTab(item.title)}} className={`font-medium w-full h-full flex gap-[10px] items-center p-[10px] rounded-md ${activeTab === item.title ? "bg-blue-600 text-white":"bg-gray-200 text-gray-500"}`} href={item.link}>
+                                <Icon strokeWidth={2} width={30} height={30}/>
+                                <span>{item.title}</span>
+                            </Link>
+                        </div>
+                    )
+                })}
             </div>
             <div className="w-full h-full flex flex-2 xl:flex-1">
                 <div className="w-full flex justify-start items-start pl-[10px] text-red-500">
