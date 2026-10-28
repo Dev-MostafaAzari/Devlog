@@ -1,4 +1,5 @@
 "use client";
+import { LogoutUser } from "@/app/redux/features/LoginSlice";
 import { CloseSidebar } from "@/app/redux/features/UiSlice";
 import { motion } from "framer-motion";
 import { LayoutDashboard, LibraryBig, LogOut, SquarePlus, User, X } from "lucide-react";
@@ -88,7 +89,7 @@ const MobileSidebar = () => {
                                     <motion.div variants={sidebarContent} className="w-full flex justify-start items-center pt-[10px] text-red-500">
                                         <div className="w-full flex justify-start items-center gap-[10px]">
                                             <LogOut strokeWidth={2} width={30} height={30}/>
-                                            <Link onClick={()=>{dispatch(CloseSidebar())}} className="font-medium" href={"/"}>Logout</Link>
+                                            <Link onClick={()=>{dispatch(CloseSidebar());dispatch(LogoutUser())}} className="font-medium" href={"/"}>Logout</Link>
                                         </div>
                                     </motion.div>
                                 </motion.div>
