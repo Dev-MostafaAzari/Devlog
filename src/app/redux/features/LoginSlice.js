@@ -3,7 +3,6 @@ import axios from "axios";
 
 const initialState = {
     isLogedIn : false,
-    isLogedIn2 : false,
     data : null,
     loading : false,
     loading2 : false,
@@ -29,13 +28,24 @@ const loginUser = createAsyncThunk("login/loginUser", async (_,{rejectWithValue}
 const LoginUserWithPass = createAsyncThunk("login/LoginUserWithPass",async ({mobile,password},{rejectWithValue})=>{
     try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}users/login`,{mobile : mobile , password : password},{withCredentials:true});
-        console.log("res", response.data);
         return response.data;
     } catch (error) {
         const errorMessage = error.response.data;
         return rejectWithValue(errorMessage);
     }
 });
+
+const LogoutUser = createAsyncThunk("login/logoutUser",async(_,{rejectWithValue})=>{
+    try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}users/me/logout`,{},{withCredentials:true});
+        return response.data;
+    } catch (error) {
+        const ErrorMessage = error.response.data;
+        console.log(error.response)
+        return rejectWithValue(ErrorMessage);
+    }
+});
+
 
 const LoginSlice = createSlice({
     name : "login",
@@ -71,6 +81,16 @@ const LoginSlice = createSlice({
             state.error2 = true;
             state.errorMessage2 = action.payload;
             state.isLogedIn = false;
+        }),
+        builder.addCase(LogoutUser.pending,(state)=>{
+            state.loading = true;
+        }),
+        builder.addCase(LogoutUser.fulfilled , (state)=>{
+            state.loading = false;
+            state.isLogedIn = false;
+        }),
+        builder.addCase(LogoutUser.rejected, (state,action)=>{
+            console.log(action.payload);
         })
     }
 });
@@ -78,4 +98,4 @@ const LoginSlice = createSlice({
 
 
 export default LoginSlice.reducer;
-export {loginUser,LoginUserWithPass};
+export {loginUser,LoginUserWithPass,LogoutUser};
