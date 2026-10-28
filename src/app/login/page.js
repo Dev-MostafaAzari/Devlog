@@ -14,13 +14,13 @@ const UserLogin = () => {
     const dispatch = useDispatch();
     const [mobile , setMobile] = useState("");
     const [password , setPassword] = useState("");
-    const {loading2, error2, errorMessage2, isLogedIn2} = useSelector(state => state.loginSlice);
+    const {loading2, error2, errorMessage2, isLogedIn} = useSelector(state => state.loginSlice);
     useEffect(()=>{
-        if(isLogedIn2)
+        if(isLogedIn)
         {
             router.push("/");
         }
-    },[isLogedIn2]);
+    },[isLogedIn]);
     const submit = (e)=>{
         e.preventDefault();
         dispatch(LoginUserWithPass({mobile : mobile , password : password}));

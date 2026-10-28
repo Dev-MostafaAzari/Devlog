@@ -63,14 +63,14 @@ const LoginSlice = createSlice({
         }),
         builder.addCase(LoginUserWithPass.fulfilled , (state,action)=>{
             state.loading2 = false;
-            state.isLogedIn2 = true;
+            state.isLogedIn = true;
             state.data = action.payload;
         }),
         builder.addCase(LoginUserWithPass.rejected , (state,action)=>{
             state.loading2 = false;
             state.error2 = true;
             state.errorMessage2 = action.payload;
-            state.isLogedIn2 = false;
+            state.isLogedIn = false;
         })
     }
 });

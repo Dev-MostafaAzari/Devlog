@@ -9,11 +9,11 @@ import ProfilePicLoading from "../Loading/ProfilePicLoading";
 
 const NavbarProfile = () => {
     const {isRegistered} = useSelector(state => state.registerSlice);
-    const {data , loading ,isLogedIn,isLogedIn2} = useSelector(state => state.loginSlice);
+    const {data , loading ,isLogedIn} = useSelector(state => state.loginSlice);
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(loginUser())
-    },[isRegistered,isLogedIn2])
+    },[isRegistered,isLogedIn])
 
     return (
         <div className="flex-1 flex justify-left items-center">

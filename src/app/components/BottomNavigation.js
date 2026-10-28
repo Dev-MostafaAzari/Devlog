@@ -23,7 +23,7 @@ const ButtomNavigation = () => {
                     <Link href={"/"} className="flex flex-col items-center gap-[3px] text-[12px] text-[#285A48]"><SquareLibrary size={25} color="#285A48" strokeWidth={2}/><span>Categoryes</span></Link>
                 </div>
                 <div className="p-[5px] flex justify-center">
-                    <Link href={isLogedIn ? "/profile" : "/login"} className="flex flex-col items-center gap-[3px] text-[12px] text-[#285A48]">
+                    <Link href={isLogedIn ? "/user/profile" : "/login"} className="flex flex-col items-center gap-[3px] text-[12px] text-[#285A48]">
                         {isLogedIn ? 
                             <Image src={`${process.env.NEXT_PUBLIC_API_URL}${data.image}`} width={25} height={25} alt="User" className="rounded-[50%]" />
                             :
