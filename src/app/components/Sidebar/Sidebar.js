@@ -10,7 +10,7 @@ const Sidebar = () => {
     const sidebarLinks = [{title:"Dashboard",link:"/user",icon:"LayoutDashboard"},{title:"My Articles",link:"/user/myarticles",icon:"LibraryBig"}
         ,{title:"Add Article",link:"/user/addarticle",icon:"SquarePlus"},{title:"Profile",link:"/user/profile",icon:"User"}
     ]; // sidebar Links
-    const [activeTab,SetActiveTab]=useState("Profile");
+    const [activeTab,SetActiveTab]=useState("Dashboard");
 
     return (
         <div className="w-full h-full flex flex-col p-[10px] shadow-gray-400 shadow-md rounded-[15px]">

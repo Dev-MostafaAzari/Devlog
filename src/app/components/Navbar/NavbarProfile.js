@@ -23,7 +23,7 @@ const NavbarProfile = () => {
                 </div>
                 :
                 (isLogedIn ? 
-                    <Link href={"/user/profile"}>
+                    <Link href={"/user"}>
                         <Image src={`${process.env.NEXT_PUBLIC_API_URL}${data?.image}`} width={40} height={40} alt="profilePic" className="rounded-[50%]"/>
                     </Link>
                     :
