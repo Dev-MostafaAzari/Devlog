@@ -27,23 +27,24 @@ const Profile = () => {
                     <div className="flex-1 flex  flex justify-center items-center">
                         <div className="relative">
                             <Image src={`${process.env.NEXT_PUBLIC_API_URL}${data?.image}`} width={200} height={200} alt="profilePic" className="rounded-[50%]"/>
-                            <button className="absolute bottom-[10px] right-[10px]">
-                                <Pencil strokeWidth={2} width={25} height={25} className="text-gray-700"/>
+                            <button className="absolute bottom-[10px] right-[10px] rounded-[50%] bg-blue-800 p-[5px] cursor-pointer">
+                                <Pencil strokeWidth={2} width={25} height={25} className="text-gray-300"/>
                             </button>
                         </div>
                     </div>
-                    <div className="flex-1 flex flex-col">
-                        <div className="flex items-center p-[5px]">
-                            <p className="text-gray-800 font-medium">Username : <span className="text-gray-600">{data.name}</span></p>
+                    <div className="flex-1 flex flex-col [&_div]:flex [&_div]:items-center [&_div]:p-[5px] [&_p]:text-gray-800 
+                        [&_p]:font-medium [&_p]:text-[20px] [&_span]:text-gray-600">
+                        <div>
+                            <p>Username : <span>{data.name}</span></p>
                         </div>
-                        <div className="flex items-center p-[5px]">
-                            <p className="text-gray-800 font-medium">Phone Number : <span className="text-gray-600">{data.mobile}</span></p>
+                        <div>
+                            <p>Phone Number : <span>{data.mobile}</span></p>
                         </div>
-                        <div className="flex items-center p-[5px]">
-                            <p className="text-gray-800 font-medium">Member Since : <span className="text-gray-600">{data.createdAt.split("T")[0]}</span></p>
+                        <div>
+                            <p>Member Since : <span>{data.createdAt.split("T")[0]}</span></p>
                         </div>
-                        <div className="flex items-center p-[5px]">
-                            <p className="text-gray-800 font-medium">Role : <span className="text-gray-600">{data.role.toUpperCase()}</span></p>
+                        <div>
+                            <p>Role : <span>{data.role.toUpperCase()}</span></p>
                         </div>
                     </div>
                 </>
