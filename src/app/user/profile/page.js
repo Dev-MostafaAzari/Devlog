@@ -21,7 +21,7 @@ const Profile = () => {
     },[isLogedIn])
 
     return (
-        <div className="w-full h-full flex flex-col p-[10px] md:flex-2">
+        <div className="w-full h-full flex flex-col p-[10px] md:flex-2 overflow-scroll md:scrollbar-none">
             {data ? 
                 <>
                     <div className="flex-1 flex  flex justify-center items-center">

@@ -13,8 +13,8 @@ const Sidebar = () => {
     const [activeTab,SetActiveTab]=useState("Dashboard");
 
     return (
-        <div className="w-full h-full flex flex-col p-[10px] shadow-gray-400 shadow-md rounded-[15px]">
-            <div className="w-full h-full flex flex-col flex-3 gap-[10px]">
+        <div className="w-full h-full flex flex-col p-[10px] shadow-gray-400 shadow-md rounded-[15px] overflow-scroll scrollbar-none">
+            <div className="w-full flex flex-col flex-3 gap-[10px]">
                 {sidebarLinks.map((item) => {
                     const Icon = icons[item.icon];
                     return(
@@ -27,7 +27,7 @@ const Sidebar = () => {
                     )
                 })}
             </div>
-            <div className="w-full h-full flex flex-2 xl:flex-1">
+            <div className="w-full flex flex-2 xl:flex-1">
                 <div className="w-full flex justify-start items-start pl-[10px] text-red-500">
                     <div className="flex flex-row justify-start items-center gap-[10px]">
                         <button onClick={()=>{dispatch(LogoutUser())}} className="font-medium flex gap-[10px] items-center cursor-pointer"><LogOut strokeWidth={2} width={30} height={30}/>Logout</button>
