@@ -13,7 +13,7 @@ const Sidebar = () => {
     const [activeTab,SetActiveTab]=useState("Dashboard");
 
     return (
-        <div className="w-full h-full flex flex-col p-[10px] shadow-gray-400 shadow-md rounded-[15px] overflow-scroll scrollbar-none">
+        <div className="w-full flex flex-col p-[10px] overflow-scroll md:scrollbar-none">
             <div className="w-full flex flex-col flex-3 gap-[10px]">
                 {sidebarLinks.map((item) => {
                     const Icon = icons[item.icon];
