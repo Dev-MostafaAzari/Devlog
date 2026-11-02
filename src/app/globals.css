@@ -1,3 +1,14 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
+.ProseMirror h1 {
+    font-size: 25px;
+}
+.ProseMirror h2 {
+    font-size: 20px;
+}
+.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
 
