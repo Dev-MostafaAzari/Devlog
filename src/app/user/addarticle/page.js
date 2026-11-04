@@ -2,8 +2,45 @@
 
 import Tiptap from "@/app/components/TitTap";
 import { FileText, Globe, ImagePlus, LayoutGridCircles, PencilLine } from "lucide-react";
+import { useState } from "react";
+import {z} from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const schema  = z.object({
+    title : z.string().min(3,"title must be at least 3 charecters").regex(/^[a-zA-Z]+[0-9]*$/),
+    category : z.string().regex(/^[a-zA-Z]+$/),
+    state : z.enum(["published","draft"],{error:"article state required"}),
+    image : z.custom((files)=> files instanceof FileList).optional().transform((files)=>files?.[0]).refine((file)=> !file || file.size <= 5*1024*1024,"Image must be less than 5MB"),
+    content : z.string().min(20,"Content must be at least 20 charecters")
+});
 
 const AddArticle = () => {
+    const {register , handleSubmit, watch, setValue, formState:{errors}} = useForm({resolver:zodResolver(schema),defaultValues:{state : "published"}});
+    const [articleContent , setArticleContent] = useState(null);
+    const article = {
+        title : watch("title"),
+        category : watch("category"),
+        state : watch("state"),
+        image : watch("image"),
+        content : articleContent
+    };
+    const onSubmit = (e)=>{
+        e.preventDefault();
+        const contentCheck = schema.safeParse({
+            content : articleContent.replace(/<[^>]*>/g,"").trim(),
+            title : article.title,
+            category : article.category,
+            image : article.image,
+            state : article.state
+        });
+        if(!contentCheck.success)
+        {
+            console.log(contentCheck.error.issues);
+            return;
+        }
+        console.log(article);
+    }
     return (
         <div className="w-full flex flex-col justify-center p-[10px] rounded-md shadow-gray-400 shadow-sm">
             <div className="w-full p-[10px] gap-[10px] flex justify-start">
@@ -18,10 +55,10 @@ const AddArticle = () => {
                 </div>
             </div>
             <hr className="border-gray-400"/>
-            <form className="w-full p-[10px] flex flex-col justify-center [&_span]:font-medium [&_input]:rounded-md [&_input]:border-gray-400 [&_input]:border-[1px] [&_input]:p-[10px]">
+            <form onSubmit={(e)=>handleSubmit(onSubmit(e))} className="w-full p-[10px] flex flex-col justify-center [&_span]:font-medium [&_input]:rounded-md [&_input]:border-gray-400 [&_input]:border-[1px] [&_input]:p-[10px]">
                 <div className="w-full p-[10px] flex flex-col gap-[5px]">
                     <span className="">Title</span>
-                    <input type="text" placeholder="Enter article title..."/>
+                    <input {...register("title")} type="text" placeholder="Enter article title..." required/>
                 </div>
                 <div className="w-full p-[10px] gap-[10px] flex flex-col md:flex-row">
                     <div className="flex-1">
@@ -29,7 +66,7 @@ const AddArticle = () => {
                             <span className="">Category</span>
                             <div className="w-full flex gap-[5px] p-[10px] border-gray-400 rounded-md border-[1px]">
                                 <span><LayoutGridCircles width={25} height={25}/></span>
-                                <select name="category" className="w-full outline-none">
+                                <select {...register("category")} name="category" className="w-full outline-none" required>
                                     <option value={""} disabled>
                                         Chose a category
                                     </option>
@@ -51,13 +88,12 @@ const AddArticle = () => {
                             <span className="">State</span>
                             <div className="w-full flex border-gray-400 overflow-hidden border-[1px] rounded-md
                                 [&_button]:w-full [&_button]:p-[10px] [&_button]:cursor-pointer [&_button]:flex [&_button]:gap-[10px] [&_button]:flex-row [&_button]:items-center [&_button]:justify-center">
-                                <div className="flex-1 bg-blue-500 text-white">
-                                    <button type="button" className=""><Globe width={25} height={25}/>Published</button>
+                                <div className="flex-1">
+                                    <button type="button" onClick={()=>{setValue("state","published")}} className={`${watch("state") === "published" ? "bg-blue-500 text-white":""}`}><Globe width={25} height={25}/>Published</button>
                                 </div>
                                 <div className="flex-1">
-                                    <button type="button" className=""><FileText width={25} height={25}/>Draft</button>
+                                    <button type="button" onClick={()=>{setValue("state","draft")}} className={`${watch("state") === "draft" ? "bg-blue-500 text-white" : ""}`}><FileText width={25} height={25}/>Draft</button>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -68,14 +104,14 @@ const AddArticle = () => {
                         <p className="font-medium">Upload an image here</p>
                         <p className="text-gray-600">click to browse</p>
                         <p className="text-gray-600">Max: 5Mb</p>
-                        <input type="file" className="hidden" accept="image/*"/>
+                        <input {...register("image")} type="file" className="hidden" accept="image/*"/>
                     </label>
                 </div>
                 <div className="w-full p-[10px] flex flex-col gap-[10px]">
                     <div className="w-full">
                         <span>Content</span>
                     </div>
-                    <Tiptap/>
+                    <Tiptap onChange={setArticleContent}/>
                 </div>
                 <hr className="border-gray-400"/>
                 <div className="w-full p-[10px] flex justify-between items-center [&_button]:border-[1px] [&_button]:border-gray-300 [&_button]:cursor-pointer">

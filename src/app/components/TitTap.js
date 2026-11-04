@@ -5,14 +5,14 @@ import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
 
 
-const Tiptap = ({ onChange }) => {   // geting onClick fn from parent component
+const Tiptap = ({onChange}) => {   // geting onClick fn from parent component
     const [active , setActive] = useState({bold:false,italic:false,heading1:false,heading2:false,list:false});
     const editor = useEditor({  // editor config
         extensions: [StarterKit],
         content: "",
         immediatelyRender: false,
         onUpdate: ({ editor }) => { // when content changes we save the content using given fn (onChange)
-           
+           onChange(editor.getHTML());
         },
     });
 
