@@ -8,6 +8,7 @@ const initialState = {
 };
 
 const createArticle = createAsyncThunk("article/createArticle", async ({title,state,category,content,image},{rejectWithValue})=>{
+    // need to send data as a formData cuz we are sending files as well
     const formData = new FormData();
     formData.append("title",title);
     formData.append("state",state);

@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
 import { createArticle } from "@/app/redux/features/ArticleSlice";
 
+//zod schema
 const schema  = z.object({
     title : z.string().min(3,"title must be at least 3 charecters").regex(/^[a-zA-Z]+[0-9]*$/),
     category : z.string().regex(/^[a-zA-Z]+$/),
@@ -30,6 +31,7 @@ const AddArticle = () => {
     };
     const onSubmit = (e)=>{
         e.preventDefault();
+        // need to use safeParse cuz we have to get tiptap data and validated separately
         const contentCheck = schema.safeParse({
             content : articleContent.replace(/<[^>]*>/g,"").trim(),
             title : article.title,
@@ -64,6 +66,7 @@ const AddArticle = () => {
                     <input {...register("title")} type="text" placeholder="Enter article title..." required/>
                 </div>
                 <div className="w-full p-[10px] gap-[10px] flex flex-col md:flex-row">
+                    {/* category */}
                     <div className="flex-1">
                         <div className="w-full flex flex-col gap-[5px]">
                             <span className="">Category</span>
@@ -86,6 +89,7 @@ const AddArticle = () => {
                             </div>
                         </div>
                     </div>
+                    {/* state */}
                     <div className="flex-1">
                         <div className="w-full flex flex-col gap-[5px]">
                             <span className="">State</span>
@@ -101,6 +105,7 @@ const AddArticle = () => {
                         </div>
                     </div>
                 </div>
+                {/* image */}
                 <div className="w-full p-[10px]">
                     <label className="w-full lg:h-[300px] p-[10px] flex flex-col items-center justify-center cursor-pointer rounded-md border-gray-400 border-dashed border-[1px]">
                         <ImagePlus width={30} height={30} className="text-gray-500"/>
@@ -110,6 +115,7 @@ const AddArticle = () => {
                         <input {...register("image")} type="file" className="hidden" accept="image/*"/>
                     </label>
                 </div>
+                {/* text editor (tiptap) */}
                 <div className="w-full p-[10px] flex flex-col gap-[10px]">
                     <div className="w-full">
                         <span>Content</span>
@@ -117,6 +123,7 @@ const AddArticle = () => {
                     <Tiptap onChange={setArticleContent}/>
                 </div>
                 <hr className="border-gray-400"/>
+                {/* buttons */}
                 <div className="w-full p-[10px] flex justify-between items-center [&_button]:border-[1px] [&_button]:border-gray-300 [&_button]:cursor-pointer">
                     <button type="reset" className="p-[10px] rounded-md bg-gray-100">Cancel</button>
                     <button type="submit" className="p-[10px] rounded-md bg-blue-500 text-white hover:bg-blue-700">Create Article</button>
