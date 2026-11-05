@@ -6,6 +6,8 @@ import { useState } from "react";
 import {z} from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useDispatch } from "react-redux";
+import { createArticle } from "@/app/redux/features/ArticleSlice";
 
 const schema  = z.object({
     title : z.string().min(3,"title must be at least 3 charecters").regex(/^[a-zA-Z]+[0-9]*$/),
@@ -16,6 +18,7 @@ const schema  = z.object({
 });
 
 const AddArticle = () => {
+    const dispatch = useDispatch();
     const {register , handleSubmit, watch, setValue, formState:{errors}} = useForm({resolver:zodResolver(schema),defaultValues:{state : "published"}});
     const [articleContent , setArticleContent] = useState(null);
     const article = {
@@ -39,7 +42,7 @@ const AddArticle = () => {
             console.log(contentCheck.error.issues);
             return;
         }
-        console.log(article);
+        dispatch(createArticle(article));
     }
     return (
         <div className="w-full flex flex-col justify-center p-[10px] rounded-md shadow-gray-400 shadow-sm">
@@ -116,7 +119,7 @@ const AddArticle = () => {
                 <hr className="border-gray-400"/>
                 <div className="w-full p-[10px] flex justify-between items-center [&_button]:border-[1px] [&_button]:border-gray-300 [&_button]:cursor-pointer">
                     <button type="reset" className="p-[10px] rounded-md bg-gray-100">Cancel</button>
-                    <button type="submit" className="p-[10px] rounded-md bg-blue-500 text-white">Create Article</button>
+                    <button type="submit" className="p-[10px] rounded-md bg-blue-500 text-white hover:bg-blue-700">Create Article</button>
                 </div>
             </form>
         </div>
