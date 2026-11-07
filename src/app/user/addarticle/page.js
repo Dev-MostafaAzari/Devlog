@@ -11,17 +11,20 @@ import { createArticle } from "@/app/redux/features/ArticleSlice";
 
 //zod schema
 const schema  = z.object({
-    title : z.string().min(3,"title must be at least 3 charecters").regex(/^[a-zA-Z]+[0-9]*$/),
+    title : z.string().min(3,"title must be at least 3 charecters").regex(/^[a-zA-Z]+[0-9]*$/,"Title Must start with letter"),
     category : z.string().regex(/^[a-zA-Z]+$/),
     state : z.enum(["published","draft"],{error:"article state required"}),
     image : z.custom((files)=> files instanceof FileList).optional().transform((files)=>files?.[0]).refine((file)=> !file || file.size <= 5*1024*1024,"Image must be less than 5MB"),
+});
+const tiptapSchema = z.object({
     content : z.string().min(20,"Content must be at least 20 charecters")
 });
 
 const AddArticle = () => {
     const dispatch = useDispatch();
-    const {register , handleSubmit, watch, setValue, formState:{errors}} = useForm({resolver:zodResolver(schema),defaultValues:{state : "published"}});
+    const {register , handleSubmit, watch, setValue, reset,formState:{errors}} = useForm({resolver:zodResolver(schema),defaultValues:{state : "published"}});
     const [articleContent , setArticleContent] = useState(null);
+    const [resetForm , setResetForm] = useState(false);
     const article = {
         title : watch("title"),
         category : watch("category"),
@@ -29,19 +32,13 @@ const AddArticle = () => {
         image : watch("image"),
         content : articleContent
     };
-    const onSubmit = (e)=>{
-        e.preventDefault();
+    const onSubmit = ()=>{
         // need to use safeParse cuz we have to get tiptap data and validated separately
-        const contentCheck = schema.safeParse({
-            content : articleContent.replace(/<[^>]*>/g,"").trim(),
-            title : article.title,
-            category : article.category,
-            image : article.image,
-            state : article.state
+        const contentCheck = tiptapSchema.safeParse({
+            content : articleContent?.replace(/<[^>]*>/g,"").trim(),
         });
         if(!contentCheck.success)
         {
-            console.log(contentCheck.error.issues);
             return;
         }
         dispatch(createArticle(article));
@@ -60,9 +57,9 @@ const AddArticle = () => {
                 </div>
             </div>
             <hr className="border-gray-400"/>
-            <form onSubmit={(e)=>handleSubmit(onSubmit(e))} className="w-full p-[10px] flex flex-col justify-center [&_span]:font-medium [&_input]:rounded-md [&_input]:border-gray-400 [&_input]:border-[1px] [&_input]:p-[10px]">
+            <form onSubmit={handleSubmit(onSubmit)} className="w-full p-[10px] flex flex-col justify-center [&_span]:font-medium [&_input]:rounded-md [&_input]:border-gray-400 [&_input]:border-[1px] [&_input]:p-[10px]">
                 <div className="w-full p-[10px] flex flex-col gap-[5px]">
-                    <span className="">Title</span>
+                    <span className="flex gap-[5px] items-center">Title <p className="text-[12px] text-red-400 ">{errors.title?.message}</p></span>
                     <input {...register("title")} type="text" placeholder="Enter article title..." required/>
                 </div>
                 <div className="w-full p-[10px] gap-[10px] flex flex-col md:flex-row">
@@ -106,7 +103,8 @@ const AddArticle = () => {
                     </div>
                 </div>
                 {/* image */}
-                <div className="w-full p-[10px]">
+                <div className="w-full flex flex-col gap-[5px] p-[10px]">
+                    <span className="flex gap-[5px] items-center">Image<p className="text-[12px] text-red-400 ">{errors.image?.message}</p></span>
                     <label className="w-full lg:h-[300px] p-[10px] flex flex-col items-center justify-center cursor-pointer rounded-md border-gray-400 border-dashed border-[1px]">
                         <ImagePlus width={30} height={30} className="text-gray-500"/>
                         <p className="font-medium">Upload an image here</p>
@@ -118,14 +116,14 @@ const AddArticle = () => {
                 {/* text editor (tiptap) */}
                 <div className="w-full p-[10px] flex flex-col gap-[10px]">
                     <div className="w-full">
-                        <span>Content</span>
+                        <span className="flex gap-[5px] items-center">Content{articleContent?.replace(/<[^>]*>/g,"").trim().length >= 20 ? null : <p className="text-[12px] text-purple-400">must be at least 20 charecters</p>}</span>
                     </div>
-                    <Tiptap onChange={setArticleContent}/>
+                    <Tiptap onChange={setArticleContent} reset={resetForm}/>
                 </div>
                 <hr className="border-gray-400"/>
                 {/* buttons */}
                 <div className="w-full p-[10px] flex justify-between items-center [&_button]:border-[1px] [&_button]:border-gray-300 [&_button]:cursor-pointer">
-                    <button type="reset" className="p-[10px] rounded-md bg-gray-100">Cancel</button>
+                    <button type="reset" onClick={()=>{setResetForm(!resetForm);reset()}} className="p-[10px] rounded-md bg-gray-100">Cancel</button>
                     <button type="submit" className="p-[10px] rounded-md bg-blue-500 text-white hover:bg-blue-700">Create Article</button>
                 </div>
             </form>
