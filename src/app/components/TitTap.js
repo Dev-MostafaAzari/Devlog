@@ -2,10 +2,10 @@
 
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
-const Tiptap = ({onChange}) => {   // geting onClick fn from parent component
+const Tiptap = ({onChange ,reset}) => {   // geting onClick fn from parent component
     const [active , setActive] = useState({bold:false,italic:false,heading1:false,heading2:false,list:false});
     const editor = useEditor({  // editor config
         extensions: [StarterKit],
@@ -15,6 +15,10 @@ const Tiptap = ({onChange}) => {   // geting onClick fn from parent component
            onChange(editor.getHTML());
         },
     });
+    //reset
+    useEffect(()=>{
+        editor?.commands.clearContent();
+    },[reset])
 
     return (
         <div className="rounded-xl border border-gray-300">
