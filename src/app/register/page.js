@@ -40,49 +40,49 @@ const Register = () => {
     }
 
     return (
-        <div className="w-screen h-[calc(100vh-175px)] md:h-[calc(100vh-100px)] overflow-y-scroll md:scrollbar-none xl:flex xl:justify-center relative">
+        <div className="MainContainer">
             {error ? <AlertRegister ErrorMessage={errorMessage}/> : null}
             <div className="w-full h-full p-[30px] xl:w-[1366px]">
                 <div className="w-full h-full flex justify-center items-center flex-col lg:flex-row">
                     <div className="w-full h-full hidden flex-2 xl:flex-2 rounded-md overflow-hidden md:flex">
-                        <Image src={"/images/register.jpg"}  quality={100} width={100} height={100} sizes="100vw" alt="pic" className="w-full h-full object-contain"/>
+                        <Image src={"/images/register.jpg"}  quality={100} width={100} height={100} sizes="100vw" alt="pic" className="FormImage"/>
                     </div>
                     <div className="w-full h-full flex md:flex-2 flex-col gap-[10px] justify-center p-[10px]">
-                        <div className="w-full h-full flex-1 flex flex-col items-center justify-end">
-                            <h1 className="text-[30px] text-gray-600">Sign Up</h1>
-                            <h2 className="text-[22px] text-gray-600">Create your account</h2>
+                        <div className="TitlesContainer">
+                            <h1>Sign Up</h1>
+                            <h2>Create your account</h2>
                         </div>
                         <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full flex-3 flex flex-col gap-[5px]">
-                            <div className="flex gap-[10px] flex-col justify-center p-[10px]">
-                                <span className="text-[20px]">
+                            <div className="FormInputContainers">
+                                <span>
                                     Full Name
                                 </span>
-                                <input {...register("name")} type="text" className="border-[1px] border-gray-300  p-[10px] outline-gray-400" placeholder="Enter Name"/>
+                                <input {...register("name")} type="text" className="FormInputsStyle" placeholder="Enter Name"/>
                                 <span>{errors.name?.message}</span>
                             </div>
-                            <div className="flex gap-[10px] flex-col justify-center p-[10px]">
-                                <span className="text-[20px]">
+                            <div className="FormInputContainers">
+                                <span>
                                     Phone Number
                                 </span>
-                                <input {...register("mobile")} type="text" className="border-[1px] border-gray-300 p-[10px] outline-gray-400" placeholder="Enter Mobile"/>
+                                <input {...register("mobile")} type="text" className="FormInputsStyle" placeholder="Enter Mobile"/>
                                 <span>{errors.mobile?.message}</span>
                             </div>
-                            <div className="flex gap-[10px] flex-col justify-center p-[10px]">
-                                <span className="text-[20px]">
+                            <div className="FormInputContainers">
+                                <span>
                                     Password
                                 </span>
-                                <input {...register("password")} type="password" className="border-[1px] border-gray-300 p-[10px] outline-gray-400" placeholder="Enter Password"/>
+                                <input {...register("password")} type="password" className="FormInputsStyle" placeholder="Enter Password"/>
                                 <span>{errors.password?.message}</span>
                             </div>
-                            <div className="flex gap-[10px] flex-col justify-center p-[10px]">
-                                <span className="text-[20px]">
+                            <div className="FormInputContainers">
+                                <span>
                                     Confirm Password
                                 </span>
-                                <input {...register("confirmPassword")} type="password" className="border-[1px] border-gray-300 p-[10px] outline-gray-400" placeholder="Confirm Password"/>
+                                <input {...register("confirmPassword")} type="password" className="FormInputsStyle" placeholder="Confirm Password"/>
                                 <span>{errors.confirmPassword?.message}</span>
                             </div>
                             <div className="flex justify-center items-center p-[10px]">
-                                <button disabled={isLoading ? true : false}  type="submit" className={`w-[130px] h-[45px] p-[10px] bg-blue-700 text-white rounded-md cursor-pointer ${isLoading ? "" : "hover:bg-blue-900"}`}>{isLoading ? <SignInLoading/> : "Sign Up"}</button>
+                                <button disabled={isLoading ? true : false}  type="submit" className={`FormSubmitBtn w-[130px] h-[45px] ${isLoading ? "" : "hover:bg-blue-900"}`}>{isLoading ? <SignInLoading/> : "Sign Up"}</button>
                             </div>
                         </form>
                     </div>
