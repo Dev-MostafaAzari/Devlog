@@ -18,6 +18,11 @@
     .MainContainer {
         @apply w-screen h-[calc(100vh-175px)] md:h-[calc(100vh-100px)] overflow-y-scroll md:scrollbar-none relative xl:flex xl:justify-center
     };
+
+    /* ---userRoutesParent---*/
+    .UserRouteParent {
+        @apply w-full p-[10px] rounded-md shadow-gray-400 shadow-sm
+    };
 }
 
 @layer components 
@@ -46,7 +51,40 @@
     .FormImage{
         @apply w-full h-full object-contain
     };
+
+    /*----Dashboard----*/
+
+    /*RecentArticle*/
+    .RecentArticlesContainer{
+        @apply w-full flex flex-col gap-[10px] [&_p]:w-full [&_p]:truncate [&_p]:text-gray-800 [&_p]:font-medium lg:[&_p]:text-[20px] [&_img]:w-[50px] [&_img]:h-[50px] [&_img]:rounded-md [&_img]:object-contain lg:[&_img]:w-[70px] lg:[&_img]:h-[70px] xl:[&_img]:w-[100px] xl:[&_img]:h-[100px]
+    };
     
+    /*---ProfilePage----*/
+
+    /*ProfileInput&inputContainer*/
+    .ProfileInputContainer{
+        @apply flex flex-col lg:flex-row gap-[5px] [&>div]:gap-[5px] [&_span]:text-gray-600 [&_input]:p-[5px] [&_input]:rounded-md [&_input]:outline-none [&_input]:border-[1px] [&_input]:border-gray-400
+    }
+
+    /*----AddArticle----*/
+
+    /*AddArticleForm*/
+    .AddArticleForm{
+        @apply w-full p-[10px] flex flex-col justify-center [&_span]:font-medium [&_input]:rounded-md [&_input]:border-gray-400 [&_input]:border-[1px] [&_input]:p-[10px]
+    };
+
+    /*AddArticleStateContainer*/
+    .AddArticleState{
+        @apply w-full flex border-gray-400 overflow-hidden border-[1px] rounded-md [&_button]:w-full [&_button]:p-[10px] [&_button]:cursor-pointer [&_button]:flex [&_button]:gap-[10px] [&_button]:flex-row [&_button]:items-center [&_button]:justify-center
+    }
+
+
+    /*----MobileSidebar----*/
+
+    /*MobileSidebarLinkContainer*/
+    .MobileSidebarLinkContainer{
+        @apply w-full flex justify-start items-center gap-[10px] [&>*:nth-child(1)]:text-orange-200 [&>*:nth-child(2)]:font-medium [&>*:nth-child(2)]:text-white
+    }
 }
 
 @layer utilities
