@@ -12,3 +12,44 @@
   padding-left: 1.5rem;
 }
 
+@layer base
+{
+    /* Main Parents*/
+    .MainContainer {
+        @apply w-screen h-[calc(100vh-175px)] md:h-[calc(100vh-100px)] overflow-y-scroll md:scrollbar-none relative xl:flex xl:justify-center
+    };
+}
+
+@layer components 
+{
+    
+    /* ----Login&&Register---- */
+    /* Forms Elements */
+    .FormInputContainers
+    {
+        @apply flex gap-[10px] flex-col justify-center p-[10px] [&>*:nth-child(1)]:text-[20px] [&>*:nth-child(3)]:text-red-500
+    };
+
+    .TitlesContainer
+    {
+        @apply w-full h-full flex-1 flex flex-col items-center justify-end [&>*:nth-child(1)]:text-gray-600 [&>*:nth-child(1)]:text-[30px] [&>*:nth-child(2)]:text-[22px] [&>*:nth-child(2)]:text-gray-600 [&>*:nth-child(2)]:text-center
+    };
+
+    .FormSubmitBtn {
+        @apply bg-blue-700 text-white rounded-md cursor-pointer p-[10px]
+    };
+
+    .FormInputsStyle {
+        @apply border-[1px] border-gray-300  p-[10px] outline-gray-400
+    };
+
+    .FormImage{
+        @apply w-full h-full object-contain
+    };
+    
+}
+
+@layer utilities
+{
+
+}
