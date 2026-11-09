@@ -27,7 +27,7 @@ const NavbarProfile = () => {
                         <Image src={`${process.env.NEXT_PUBLIC_API_URL}${data?.image}`} width={40} height={40} alt="profilePic" className="rounded-[50%]"/>
                     </Link>
                     :
-                    <Link href={"/login"} className="p-[10px] bg-blue-600 text-white rounded-md">Login</Link>
+                    <Link href={"/login"} className="FormSubmitBtn hover:bg-blue-900">Login</Link>
                 )
             }
         </div>
