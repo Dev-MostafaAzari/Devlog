@@ -18,9 +18,9 @@ const UserLogin = () => {
     useEffect(()=>{
         if(isLogedIn)
         {
-            router.push("/");
+            router.replace("/");
         }
-    },[isLogedIn]);
+    },[isLogedIn,router]);
     const submit = (e)=>{
         e.preventDefault();
         dispatch(LoginUserWithPass({mobile : mobile , password : password}));

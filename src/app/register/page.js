@@ -23,18 +23,23 @@ const schema = z.object({
 
 const Register = () => {
     const {isLoading,isRegistered,error,errorMessage} = useSelector(state => state.registerSlice);
+    const {isLogedIn} = useSelector(state => state.loginSlice);
     const {register , handleSubmit ,watch, formState:{errors}} = useForm({resolver:zodResolver(schema)});
     const userData = {name:watch("name"),mobile:watch("mobile"),password:watch("password")};
     const dispatch = useDispatch();
     const router = useRouter();
     useEffect(()=>{
-        /* if(isRegistered)
+        if(isRegistered)
         {
             setTimeout(()=>{
-                router.push("/")
-            },3000)
-        } */
-    },[isRegistered])
+                router.replace("/")
+            },2000)
+        }
+        if(isLogedIn)
+        {
+            router.replace("/");
+        }
+    },[isRegistered,router])
     const onSubmit =(e)=>{
         dispatch(RegisterUser(userData));
     }
