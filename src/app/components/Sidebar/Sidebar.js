@@ -2,17 +2,22 @@
 import { LogoutUser } from "@/app/redux/features/LoginSlice";
 import { icons, LogOut } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Sidebar = () => {
     const router = useRouter();
+    const path = usePathname();
+    const [pathName , setPathName] = useState(path);
+    useEffect(()=>{
+        setPathName(path)
+    },[path,router])
     const dispatch = useDispatch();
     const sidebarLinks = [{title:"Dashboard",link:"/user",icon:"LayoutDashboard"},{title:"My Articles",link:"/user/myarticles",icon:"LibraryBig"}
         ,{title:"Add Article",link:"/user/addarticle",icon:"SquarePlus"},{title:"Profile",link:"/user/profile",icon:"User"}
     ]; // sidebar Links
-    const [activeTab,SetActiveTab]=useState("Dashboard");
+    
 
     return (
         <div className="w-full flex flex-col p-[10px] overflow-scroll md:scrollbar-none">
@@ -21,7 +26,7 @@ const Sidebar = () => {
                     const Icon = icons[item.icon];
                     return(
                         <div key={item.title} className="w-full flex justify-start items-center gap-[10px] p-[10px]">
-                            <Link onClick={()=>{SetActiveTab(item.title)}} className={`font-medium w-full h-full flex gap-[10px] items-center p-[10px] rounded-md ${activeTab === item.title ? "bg-blue-600 text-white":"bg-gray-200 text-gray-500"}`} href={item.link}>
+                            <Link className={`font-medium w-full h-full flex gap-[10px] items-center p-[10px] rounded-md ${pathName === item.link ? "bg-blue-600 text-white":"bg-gray-200 text-gray-500"}`} href={item.link}>
                                 <Icon strokeWidth={2} width={30} height={30}/>
                                 <span>{item.title}</span>
                             </Link>
