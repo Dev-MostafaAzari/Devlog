@@ -88,6 +88,7 @@ const LoginSlice = createSlice({
         builder.addCase(LogoutUser.fulfilled , (state)=>{
             state.loading = false;
             state.isLogedIn = false;
+            state.data = null;
         }),
         builder.addCase(LogoutUser.rejected, (state,action)=>{
             console.log(action.payload);
