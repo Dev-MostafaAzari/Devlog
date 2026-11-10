@@ -4,8 +4,10 @@ import { icons, LogOut } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const Sidebar = () => {
+    const router = useRouter();
     const dispatch = useDispatch();
     const sidebarLinks = [{title:"Dashboard",link:"/user",icon:"LayoutDashboard"},{title:"My Articles",link:"/user/myarticles",icon:"LibraryBig"}
         ,{title:"Add Article",link:"/user/addarticle",icon:"SquarePlus"},{title:"Profile",link:"/user/profile",icon:"User"}
@@ -30,7 +32,7 @@ const Sidebar = () => {
             <div className="w-full flex flex-2 xl:flex-1">
                 <div className="w-full flex justify-start items-start pl-[10px] text-red-500">
                     <div className="flex flex-row justify-start items-center gap-[10px]">
-                        <button onClick={()=>{dispatch(LogoutUser())}} className="font-medium flex gap-[10px] items-center cursor-pointer"><LogOut strokeWidth={2} width={30} height={30}/>Logout</button>
+                        <button onClick={()=>{dispatch(LogoutUser());router.replace("/")}} className="font-medium flex gap-[10px] items-center cursor-pointer"><LogOut strokeWidth={2} width={30} height={30}/>Logout</button>
                     </div>
                 </div>
             </div>
