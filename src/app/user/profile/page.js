@@ -16,9 +16,9 @@ const Profile = () => {
         dispatch(loginUser());
         if(!isLogedIn)
         {
-            router.push("/");
+            router.replace("/")
         }
-    },[isLogedIn])
+    },[isLogedIn,router])
 
     return (
         <>

@@ -2,12 +2,13 @@
 
 import Tiptap from "@/app/components/TitTap";
 import { FileText, Globe, ImagePlus, LayoutGridCircles, PencilLine } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {z} from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createArticle } from "@/app/redux/features/ArticleSlice";
+import { useRouter } from "next/navigation";
 
 //zod schema
 const schema  = z.object({
@@ -21,10 +22,18 @@ const tiptapSchema = z.object({
 });
 
 const AddArticle = () => {
+    const router = useRouter();
     const dispatch = useDispatch();
+    const {isLogedIn} = useSelector(state => state.loginSlice);
     const {register , handleSubmit, watch, setValue, reset,formState:{errors}} = useForm({resolver:zodResolver(schema),defaultValues:{state : "published"}});
     const [articleContent , setArticleContent] = useState(null);
     const [resetForm , setResetForm] = useState(false);
+    useEffect(()=>{
+        if(!isLogedIn)
+        {
+            router.replace("/");
+        }
+    },[isLogedIn,router])
     const article = {
         title : watch("title"),
         category : watch("category"),
