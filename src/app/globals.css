@@ -89,5 +89,7 @@
 
 @layer utilities
 {
-
+    .badge{
+        @apply flex w-auto! h-[30px] p-[10px] rounded-lg items-center justify-center gap-[5px] bg-amber-200 text-gray-600 text-[12px] lg:text-[16px] font-medium
+    }
 }

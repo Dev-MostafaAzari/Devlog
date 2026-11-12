@@ -31,15 +31,23 @@ const Profile = () => {
                                     Personal Information
                                 </h2>
                             </div>
-                            <div className="flex p-[10px] gap-[10px]">
-                                <Image src={`${process.env.NEXT_PUBLIC_API_URL}${data?.image}`} width={100} height={100} sizes="100vw" alt="profilePic" className="rounded-[50%]"/>
-                                <div className="flex flex-col justify-center p-[5px] [&_p]:text-center">
-                                    <label className="flex justify-center md:justify-start">
-                                        <input type="file" accept="image/*" className="hidden"/>
-                                        <p className="flex gap-[5px] items-center text-gray-700 p-[5px] bg-gray-300 rounded-md border-[1px] border-gray-400 cursor-pointer"><Upload/>Upload image</p>
-                                    </label>
-                                    <div className="flex justify-center md:justify-start p-[5px]">
-                                        <p className="text-gray-400">Max: 5Mb</p>
+                            <div className="flex p-[10px] justify-between flex-col md:flex-row">
+                                <div className="flex gap-[10px]">
+                                    <Image src={`${process.env.NEXT_PUBLIC_API_URL}${data?.image}`} width={100} height={100} sizes="100vw" alt="profilePic" className="rounded-[50%]"/>
+                                    <div className="flex flex-col justify-center p-[5px] [&_p]:text-center">
+                                        <label className="flex justify-end md:justify-start text-[12px] lg:text-[16px]">
+                                            <input type="file" accept="image/*" className="hidden"/>
+                                            <p className="flex gap-[5px] items-center text-gray-700 p-[5px] bg-gray-300 rounded-md border-[1px] border-gray-400 cursor-pointer"><Upload/>Upload image</p>
+                                        </label>
+                                        <div className="flex justify-end md:justify-start p-[5px]">
+                                            <p className="text-gray-400">Max: 5Mb</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex justify-end pr-[5px]">
+                                    <div className="badge">
+                                        <span>Member Since :</span>
+                                        <span>{data.createdAt.split("-")[0]}</span>
                                     </div>
                                 </div>
                             </div>
