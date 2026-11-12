@@ -5,6 +5,7 @@ import RegisterSlice from "@/app/redux/features/RegisterSlice";
 import LoginSlice from "@/app/redux/features/LoginSlice";
 import UiSlice from "@/app/redux/features/UiSlice";
 import ArticleSlice from "@/app/redux/features/ArticleSlice";
+import UserSlice from "@/app/redux/features/UserSlice";
 
 export const store = configureStore({
     reducer : {
@@ -12,5 +13,6 @@ export const store = configureStore({
         loginSlice : LoginSlice,
         uiSlice : UiSlice,
         articleSlice : ArticleSlice,
+        userSlice : UserSlice,
     }
 })
