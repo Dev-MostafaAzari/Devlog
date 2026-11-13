@@ -44,6 +44,10 @@
         @apply bg-blue-700 text-white rounded-md cursor-pointer p-[10px]
     };
 
+    .FormRestBtn {
+        @apply bg-gray-500 text-white rounded-md cursor-pointer p-[10px]
+    }
+
     .FormInputsStyle {
         @apply border-[1px] border-gray-300  p-[10px] outline-gray-400
     };
@@ -63,7 +67,7 @@
 
     /*ProfileInput&inputContainer*/
     .ProfileInputContainer{
-        @apply flex flex-col lg:flex-row gap-[5px] [&>div]:gap-[5px] [&_span]:text-gray-600 [&_input]:p-[5px] [&_input]:rounded-md [&_input]:outline-none [&_input]:border-[1px] [&_input]:border-gray-400
+        @apply flex flex-col lg:flex-row gap-[5px] [&>div]:gap-[5px] [&_p]:text-gray-600 [&_p]:flex [&_p]:items-center [&_p]:gap-[5px] [&_span]:text-red-500 [&_span]:text-[12px] [&_input]:p-[5px] [&_input]:rounded-md [&_input]:outline-none [&_input]:border-[1px] [&_input]:border-gray-400
     }
 
     /*----AddArticle----*/
