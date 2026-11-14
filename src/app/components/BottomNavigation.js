@@ -7,9 +7,10 @@ import { useSelector } from "react-redux";
 
 const ButtomNavigation = () => {
     const {isLogedIn ,data} = useSelector(state => state.loginSlice);
+    const {isUserEdited} = useSelector(state => state.userSlice);
     useEffect(()=>{
         
-    },[isLogedIn])
+    },[isLogedIn,isUserEdited])
     return (
         <div className="w-screen h-[75px] absolute bottom-[0px] p-[10px] md:hidden z-999 bg-white">
             <div className="w-full flex justify-evenly items-center gap-[3px]">
@@ -25,7 +26,7 @@ const ButtomNavigation = () => {
                 <div className="p-[5px] flex justify-center">
                     <Link href={isLogedIn ? "/user" : "/login"} className="flex flex-col items-center gap-[3px] text-[12px] text-[#285A48]">
                         {isLogedIn ? 
-                            <Image src={`${process.env.NEXT_PUBLIC_API_URL}${data.image}`} width={25} height={25} alt="User" className="rounded-[50%]" />
+                            <Image src={`${process.env.NEXT_PUBLIC_API_URL_IMAGE}${data.image}`} width={25} height={25} alt="User" className="rounded-[50%] w-[25px] h-[25px] object-content" />
                             :
                             <UserRound size={25} color="#285A48" strokeWidth={2}/>   
                         }
