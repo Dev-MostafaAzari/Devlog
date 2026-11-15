@@ -22,7 +22,7 @@ const UpdateUser = createAsyncThunk("userSlice/UpdateUser",async({firstname,last
 
     try {
         const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}users/me/profile`,formData,{withCredentials:true});
-        return response
+        return response.data
     } catch (error) {
         rejectWithValue(error.response.data)
     }
