@@ -4,7 +4,7 @@ import { useSelector , useDispatch } from "react-redux";
 import { loginUser } from "../../redux/features/LoginSlice";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Upload } from "lucide-react";
+import { CircleUserRound, Upload } from "lucide-react";
 import ProfileLoading from "../../components/Loading/ProfileLoading";
 import {z} from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -56,7 +56,13 @@ const Profile = () => {
                             </div>
                             <div className="flex p-[10px] justify-between flex-col md:flex-row">
                                 <div className="flex gap-[10px]">
-                                    <Image src={`${process.env.NEXT_PUBLIC_API_URL_IMAGE}${data?.image}`} width={100} height={100} sizes="100vw" alt="profilePic" className="w-[100px] h-[100px] object-content rounded-[50%]"/>
+                                    {data.image ?
+                                        <Image src={`${process.env.NEXT_PUBLIC_API_URL_IMAGE}${data?.image}`} width={100} height={100} sizes="100vw" alt="profilePic" className="w-[100px] h-[100px] object-content rounded-[50%]"/>
+                                        :
+                                        <div className="w-[100px] h-[100px] rounded-[50%]">
+                                            <CircleUserRound size={100} color="#393646" strokeWidth={1}/>
+                                        </div>
+                                    }
                                     <div className="flex flex-col justify-center p-[5px] [&_p]:text-center">
                                         <label className="flex justify-end md:justify-start text-[12px] lg:text-[16px]">
                                             <input {...register("image")} disabled={updateProfile ? undefined : true} type="file" accept="image/*" className="hidden"/>
