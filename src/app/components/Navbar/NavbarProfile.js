@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch , useSelector } from "react-redux";
 import ProfilePicLoading from "../Loading/ProfilePicLoading";
+import { CircleUserRound } from "lucide-react";
 
 
 const NavbarProfile = () => {
@@ -25,7 +26,11 @@ const NavbarProfile = () => {
                 :
                 (isLogedIn ? 
                     <Link href={"/user"}>
-                        <Image src={`${process.env.NEXT_PUBLIC_API_URL_IMAGE}${data?.image}`} width={40} height={40} alt="profilePic" className="rounded-[50%] w-[40px] h-[40px] object-content"/>
+                        {data.image ? 
+                            <Image src={`${process.env.NEXT_PUBLIC_API_URL_IMAGE}${data?.image}`} width={40} height={40} alt="profilePic" className="rounded-[50%] w-[40px] h-[40px] object-content"/>
+                            :
+                            <CircleUserRound size={40} color="#393646" strokeWidth={1}/>
+                        }
                     </Link>
                     :
                     <Link href={"/login"} className="FormSubmitBtn hover:bg-blue-900">Login</Link>

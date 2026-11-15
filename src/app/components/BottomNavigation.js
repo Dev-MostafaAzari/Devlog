@@ -1,5 +1,5 @@
 "use client";
-import { HomeIcon, SquareChartGantt, SquareLibrary, UserRound } from "lucide-react";
+import { CircleUserRound, HomeIcon, SquareChartGantt, SquareLibrary, UserRound } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -26,7 +26,11 @@ const ButtomNavigation = () => {
                 <div className="p-[5px] flex justify-center">
                     <Link href={isLogedIn ? "/user" : "/login"} className="flex flex-col items-center gap-[3px] text-[12px] text-[#285A48]">
                         {isLogedIn ? 
-                            <Image src={`${process.env.NEXT_PUBLIC_API_URL_IMAGE}${data.image}`} width={25} height={25} alt="User" className="rounded-[50%] w-[25px] h-[25px] object-content" />
+                            (data.image ? 
+                                <Image src={`${process.env.NEXT_PUBLIC_API_URL_IMAGE}${data.image}`} width={25} height={25} alt="User" className="rounded-[50%] w-[25px] h-[25px] object-content" />
+                                :
+                                <CircleUserRound size={25} color="#285A48" strokeWidth={2}/> 
+                            )
                             :
                             <UserRound size={25} color="#285A48" strokeWidth={2}/>   
                         }
