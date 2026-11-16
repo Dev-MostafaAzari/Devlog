@@ -42,15 +42,15 @@ const NavbarLinks = () => {
             </div>
             <div className="flex flex-col">
                 <Link className={`${pathName === "/Articles" ? "text-blue-900" : ""}`} href={"/"}>Articles</Link>
-                <motion.h variants={linkUnderLine} initial={"init"} animate={pathName === "/Articles" ? "show" : "hide"} className="border-[1px] border-blue-900"/>
+                <motion.hr variants={linkUnderLine} initial={"init"} animate={pathName === "/Articles" ? "show" : "hide"} className="border-[1px] border-blue-900"/>
             </div>
             <div className="flex flex-col">
                 <Link className={`${pathName === "/Categoryes" ? "text-blue-900" : ""}`} href={"/"}>Categoryes</Link>
-                <motion.h variants={linkUnderLine} initial={"init"} animate={pathName === "/Categoryes" ? "show" : "hide"} className="border-[1px] border-blue-900"/>
+                <motion.hr variants={linkUnderLine} initial={"init"} animate={pathName === "/Categoryes" ? "show" : "hide"} className="border-[1px] border-blue-900"/>
             </div>
             <div className="flex flex-col">
                 <Link className={`${pathName === "/About" ? "text-blue-900" : ""}`} href={"/"}>About</Link>
-                <motion.h variants={linkUnderLine} initial={"init"} animate={pathName === "/About" ? "show" : "hide"} className="border-[1px] border-blue-900"/>
+                <motion.hr variants={linkUnderLine} initial={"init"} animate={pathName === "/About" ? "show" : "hide"} className="border-[1px] border-blue-900"/>
             </div>
         </div>
     );
