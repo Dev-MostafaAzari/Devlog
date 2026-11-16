@@ -13,7 +13,7 @@ const createArticle = createAsyncThunk("article/createArticle", async ({title,st
     formData.append("title",title);
     formData.append("state",state);
     formData.append("category",category);
-    formData.append("image",image[0]);
+    formData.append("image",image);
     formData.append("content",content);
     try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}articles/me/article/create`,

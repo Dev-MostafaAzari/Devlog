@@ -34,14 +34,15 @@ const AddArticle = () => {
             router.replace("/");
         }
     },[isLogedIn,router])
-    const article = {
-        title : watch("title"),
-        category : watch("category"),
-        state : watch("state"),
-        image : watch("image"),
-        content : articleContent
-    };
-    const onSubmit = ()=>{
+
+    const onSubmit = ({title,category,state,image})=>{
+        const article = {
+            title : title,
+            category : category,
+            state : state,
+            image : image,
+            content : articleContent,
+        };
         // need to use safeParse cuz we have to get tiptap data and validated separately
         const contentCheck = tiptapSchema.safeParse({
             content : articleContent?.replace(/<[^>]*>/g,"").trim(),
