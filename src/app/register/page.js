@@ -24,8 +24,7 @@ const schema = z.object({
 const Register = () => {
     const {isLoading,isRegistered,error,errorMessage} = useSelector(state => state.registerSlice);
     const {isLogedIn} = useSelector(state => state.loginSlice);
-    const {register , handleSubmit ,watch, formState:{errors}} = useForm({resolver:zodResolver(schema)});
-    const userData = {name:watch("name"),mobile:watch("mobile"),password:watch("password")};
+    const {register , handleSubmit , formState:{errors}} = useForm({resolver:zodResolver(schema)});
     const dispatch = useDispatch();
     const router = useRouter();
     useEffect(()=>{
@@ -40,7 +39,8 @@ const Register = () => {
             router.replace("/");
         }
     },[isRegistered,router])
-    const onSubmit =(e)=>{
+    const onSubmit =({name , mobile , password})=>{
+        const userData = {name: name , mobile:mobile , password:password};
         dispatch(RegisterUser(userData));
     }
 
@@ -60,9 +60,9 @@ const Register = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full flex-3 flex flex-col gap-[5px]">
                             <div className="FormInputContainers">
                                 <span>
-                                    Full Name
+                                    Username
                                 </span>
-                                <input {...register("name")} type="text" className="FormInputsStyle" placeholder="Enter Name"/>
+                                <input {...register("name")} type="text" className="FormInputsStyle" placeholder="Enter Username"/>
                                 <span>{errors.name?.message}</span>
                             </div>
                             <div className="FormInputContainers">
