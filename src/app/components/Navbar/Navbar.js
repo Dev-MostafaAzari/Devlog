@@ -9,7 +9,7 @@ const Navbar = () => {
         <div className="w-screen h-[100px] p-[10px] flex justify-center items-center">
             <div className="w-full 2xl:w-[1366px] p-[5px] flex justify-between items-center gap-[10px] md:justify-evenly ">
                 <div className="flex-2 flex justify-between items-center md:justify-evenly">
-                    <Image src="/images/Devlog.png" alt="logo" width={75} height={75} className=""/>
+                    <Image src="/images/Devlog.png" alt="logo" width={75} height={75} loading="eager"/>
                     <NavbarLinks/>
                     <div className="flex justify-center items-center p-[5px] md:hidden">
                         <HamburgerMenu/>
