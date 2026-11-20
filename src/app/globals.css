@@ -99,6 +99,17 @@
     .MobileSidebarLinkContainer{
         @apply w-full flex justify-start items-center gap-[10px] [&>*:nth-child(1)]:text-orange-200 [&>*:nth-child(2)]:font-medium [&>*:nth-child(2)]:text-white
     }
+
+
+    /*-----ErrorPage-----*/
+
+    /*ErrorPageContainer*/
+    .ErrorPageContainer{
+        @apply w-full min-h-[600px] flex flex-col gap-[10px] justify-center items-center p-[10px] rounded-md shadow-gray-400 shadow-sm [&_h3]:text-red-600 [&_h3]:text-[16px] md:[&_h3]:text-[20px]
+    }
+    .ErrorPageBtn{
+        @apply p-[10px] rounded-md bg-blue-600 text-white cursor-pointer hover:bg-blue-900 
+    }
 }
 
 @layer utilities
