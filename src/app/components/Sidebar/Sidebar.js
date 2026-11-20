@@ -14,8 +14,8 @@ const Sidebar = () => {
         setPathName(path)
     },[path,router])
     const dispatch = useDispatch();
-    const sidebarLinks = [{title:"Dashboard",link:"/user",icon:"LayoutDashboard"},{title:"My Articles",link:"/user/myarticles",icon:"LibraryBig"}
-        ,{title:"Add Article",link:"/user/addarticle",icon:"SquarePlus"},{title:"Profile",link:"/user/profile",icon:"User"}
+    const sidebarLinks = [{title:"Dashboard",link:"/user",path:"/user",icon:"LayoutDashboard"},{title:"My Articles",link:"/user/myarticles?page=1",path:"/user/myarticles",icon:"LibraryBig"}
+        ,{title:"Add Article",link:"/user/addarticle",path:"/user/addarticle",icon:"SquarePlus"},{title:"Profile",link:"/user/profile",path:"/user/profile",icon:"User"}
     ]; // sidebar Links
     
 
@@ -26,7 +26,7 @@ const Sidebar = () => {
                     const Icon = icons[item.icon];
                     return(
                         <div key={item.title} className="w-full flex justify-start items-center gap-[10px] p-[10px]">
-                            <Link className={`font-medium w-full h-full flex gap-[10px] items-center p-[10px] rounded-md ${pathName === item.link ? "bg-blue-600 text-white":"bg-gray-200 text-gray-500"}`} href={item.link}>
+                            <Link className={`font-medium w-full h-full flex gap-[10px] items-center p-[10px] rounded-md ${pathName === item.path ? "bg-blue-600 text-white":"bg-gray-200 text-gray-500"}`} href={item.link}>
                                 <Icon strokeWidth={2} width={30} height={30}/>
                                 <span>{item.title}</span>
                             </Link>
