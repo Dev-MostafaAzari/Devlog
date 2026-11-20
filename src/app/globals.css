@@ -70,6 +70,16 @@
         @apply flex flex-col lg:flex-row gap-[5px] [&>div]:gap-[5px] [&_p]:text-gray-600 [&_p]:flex [&_p]:items-center [&_p]:gap-[5px] [&_span]:text-red-500 [&_span]:text-[12px] [&_input]:p-[5px] [&_input]:rounded-md [&_input]:outline-none [&_input]:border-[1px] [&_input]:border-gray-400
     }
 
+    /*----MyArticle-----*/
+
+    /*articleContainer*/
+    .ArticlesContainer{
+        @apply w-full h-[500px] overflow-scroll md:scrollbar-none scrollbar-thin flex flex-col gap-[10px] [&_p]:w-full [&_p]:truncate [&_p]:text-gray-800 [&_p]:font-medium lg:[&_p]:text-[20px] [&_img]:w-[75px]  [&_img]:rounded-md [&_img]:object-contain lg:[&_img]:w-[100px] 
+    };
+    .AriticleLink{
+        @apply w-full flex justify-between gap-[10px] p-[5px] md:p-[10px] border-1 border-gray-500/40 rounded-md shadow-md  shadow-gray-300 hover:shadow-gray-500/50 transition-all duration-[0.3s] [&_image]:w-[75px] [&_image]:md:w-[100px] [&_image]:rounded-md
+    }
+
     /*----AddArticle----*/
 
     /*AddArticleForm*/
