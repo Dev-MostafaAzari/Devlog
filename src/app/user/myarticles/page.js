@@ -17,17 +17,16 @@ const getArticles = async (page)=>{
 const MyArticle = async ({searchParams}) => {
     const {page} = await searchParams;
     const {articles,lastPage,currentPage} = await getArticles(page);
-    
 
     return (
-        <div className="UserRouteParent min-h-[600px]">
+        <div className="UserRouteParent min-h-[600px] md:min-h-[700px]">
             <div className="w-full flex flex-col gap-[10px]">
                 <div className="w-full text-gray-500 text-2xl">
                     <h3>MyArticles</h3>
                 </div>
                 <hr className="border-gray-500/35"/>
                 {articles ? 
-                    <>
+                    <div className="w-full min-h-[500px] md:min-h-[600px] relative">
                         <div className="ArticlesContainer">
                             {articles.map(item =>(
                                 <Link key={item.id} href={"/"} className="AriticleLink">
@@ -41,8 +40,8 @@ const MyArticle = async ({searchParams}) => {
                                 </Link> 
                             ))}
                         </div>
-                        <Pagination/>
-                    </>
+                        <Pagination lastPage={lastPage} currentPage={currentPage}/>
+                    </div>
                     :
                     <div className="w-full h-[500px] flex justify-center items-center">
                         <p className="text-gray-500/80 font-medium md:text-[20px]">No Article Found</p>
