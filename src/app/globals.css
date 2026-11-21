@@ -74,7 +74,7 @@
 
     /*articleContainer*/
     .ArticlesContainer{
-        @apply w-full h-[500px] overflow-scroll md:scrollbar-none scrollbar-thin flex flex-col gap-[10px] [&_p]:w-full [&_p]:truncate [&_p]:text-gray-800 [&_p]:font-medium lg:[&_p]:text-[20px] [&_img]:w-[75px]  [&_img]:rounded-md [&_img]:object-contain lg:[&_img]:w-[100px] 
+        @apply w-full h-[500px] overflow-scroll md:scrollbar-none scrollbar-thin flex flex-col gap-[10px] p-[10px] [&_p]:w-full [&_p]:truncate [&_p]:text-gray-800 [&_p]:font-medium lg:[&_p]:text-[20px] [&_img]:w-[75px]  [&_img]:rounded-md [&_img]:object-contain lg:[&_img]:w-[100px] 
     };
     .AriticleLink{
         @apply w-full flex justify-between gap-[10px] p-[5px] md:p-[10px] border-1 border-gray-500/40 rounded-md shadow-md  shadow-gray-300 hover:shadow-gray-500/50 transition-all duration-[0.3s] [&_image]:w-[75px] [&_image]:md:w-[100px] [&_image]:rounded-md
@@ -98,6 +98,14 @@
     /*MobileSidebarLinkContainer*/
     .MobileSidebarLinkContainer{
         @apply w-full flex justify-start items-center gap-[10px] [&>*:nth-child(1)]:text-orange-200 [&>*:nth-child(2)]:font-medium [&>*:nth-child(2)]:text-white
+    }
+
+
+    /*----pagination----*/
+
+    /*paginationLinks*/
+    .PaginationLink{
+        @apply  p-[7px] md:p-[10px] rounded-md hover:bg-blue-600/60 cursor-pointer
     }
 
 
